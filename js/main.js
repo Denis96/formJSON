@@ -57,12 +57,12 @@ $(document).ready(function(){
 
 			var br = document.createElement("br");
 
-			$(fieldset).append(div);
 				$(div).append(buttonDelete);
 				$(div).append(input);
 				$(div).append(label);
 				$(div).append(br);
 				$(div).append(br);
+			$(fieldset).append(div);
 		}
 
 		$(form).append(fieldset);
