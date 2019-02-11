@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="./css/main.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="./js/jquery-3.3.1.min.js"></script>
+		<script src="./js/main.js"></script>
+	</head>
+
+	<body>
+
+		<div class="container">
+
+			<div class="middleContent">
+				<h2>FORM HAPPYCUSTOMERBOX</h2>
+				<input id="formName" class="inputLeftPos" type="text" name="formName">
+				<button id="addForm" class="buttonRightPos">add</button>
+				
+			</div>
+			
+			<div class="main">
+				
+				<div class="currentForm">
+					<h2>Your corrent form:</h2>
+					<div id="form">
+						<fieldset>
+							<legend>Your Gener:</legend>
+
+								<div>
+									<button id="delete1-1" class="delOption">X</button>
+									<input type="radio" name="gender" id="male" value="male">
+									<label for="male">Male</label>
+									<br>
+								</div>
+								<div>
+									<button id="delete1-2" class="delOption">X</button>
+									<input type="radio" name="gender" id="female" value="female">
+									<label for="female">Female</label>
+									<br>
+								</div>
+								<div>
+									<button id="delete1-3" class="delOption">X</button>
+									<input type="radio" name="gender" id="other" value="other">
+									<label for="other">Other</label>
+									<br>
+								</div>
+								<br>
+								<button id="addOption1" class="">add</button>
+						</fieldset>
+					</div>
+				</div>
+			
+				<div class="menuOptions">
+					<h2>Options:</h2>
+					<button id="addQuestion">add question</button>
+					<p>Note: double click for edit the texts.</p>
+				</div>
+				
+			</div>
+
+			<div class="middleContent">
+				<input id="formName" class="inputLeftPos" type="text" name="formName">
+				<button id="generateJSON" class="">Generate JSON</button>
+			</div>
+
+		</div>
+
+	</body>
+</html>

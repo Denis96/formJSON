@@ -1,0 +1,72 @@
+/* @import url('https://fonts.googleapis.com/css?family=Arimo:400,700'); */
+
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700');
+
+/* font-family: 'Arimo', sans-serif; */
+/* font-family: 'Comfortaa', cursive; */
+* {
+
+	font-family: 'Comfortaa';
+}
+body {
+	background-color: Gray;
+}
+button {
+	width: auto;
+	padding: 0.5em 1em;
+	background-color: DarkTurquoise;
+	border-color: LightSeaGreen;
+	border-radius: 1em; 
+}
+fieldset{
+	margin: 2em 0;
+	padding: 2em 3em;
+}
+input {
+	width: auto;
+	padding: 0.5em 1em;
+}
+.delOption {
+	width: 2em;
+	height: : 2em;
+	padding: 2px;
+	background-color: Salmon;
+	border-color: Crimson;
+}
+.container {
+	margin: 5em 5em;
+	padding: 2em;
+	background-color: LightCyan;
+	border-style: solid;
+	border-color: DarkTurquoise;
+	border-width: 3px 0 0 2em;
+	border-radius: 1em; 
+}
+.middleContent {
+	text-align: center;
+	margin: 2em;
+}
+.buttonRightPos {
+	border-radius: 0 1em 1em 0; 
+}
+.inputLeftPos {
+	border-radius: 1em 0 0 1em; 
+    border-color: DimGray;
+}
+.main {
+	margin: 2em;
+	padding: 1em 0;
+}
+.main > div {
+	padding: 2em;
+	margin: 1em 0;
+	background-color: PaleTurquoise;
+	border-style: solid;
+	border-color: DarkTurquoise;
+	border-width: 3px 0 0 2em;
+	border-radius: 1em; 
+}
+footer {
+	padding: 2em;
+	text-align: center;
+}
