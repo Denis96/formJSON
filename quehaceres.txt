@@ -1,0 +1,6 @@
+Que haceres de la FCT:
+- when cambiar una Opt
+	- cambie el "for" del "label"
+	- cambie el "id" del "input"
+- añadir opocion correctament
+- form to json

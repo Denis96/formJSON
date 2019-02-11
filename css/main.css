@@ -1,12 +1,17 @@
 /* @import url('https://fonts.googleapis.com/css?family=Arimo:400,700'); */
 
-@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700');
+/*@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700');*/
+@import url('./css/fonts/Comforta/Comfortaa-Bold.ttf');
 
 /* font-family: 'Arimo', sans-serif; */
 /* font-family: 'Comfortaa', cursive; */
+@font-face {
+  font-family: Comfortaa;
+  src: url('./fonts/Comforta/Comfortaa-Regular.ttf');
+}
 * {
 
-	font-family: 'Comfortaa';
+	font-family: 'Comfortaa', 'Arial';
 }
 body {
 	background-color: Gray;
@@ -21,6 +26,7 @@ button {
 fieldset{
 	margin: 2em 0;
 	padding: 2em 3em;
+	border-radius: 1em;
 }
 input {
 	width: auto;
@@ -33,8 +39,16 @@ input {
 	background-color: Salmon;
 	border-color: Crimson;
 }
+.delQuestion {
+	background-color: Salmon;
+	border-color: Crimson;
+}
+.swapQuestion {
+	background-color: MediumSpringGreen;
+	border-color: LimeGreen;
+}
 .container {
-	margin: 5em 5em;
+	margin: 5em 0;
 	padding: 2em;
 	background-color: LightCyan;
 	border-style: solid;
