@@ -1,0 +1,88 @@
+﻿{
+	"name": "  Enquesta de satisfacció de Tossa de Mar",
+	"rows":
+	[
+		{
+			"idTablet": "TABLET8",
+			"version": "1.1",
+			"questions":
+			[
+				{
+					"question": " ",
+					"type":"HOME"
+				},
+
+				{
+					"question": "1 .- D'on vens?",
+					"type":"OPTIONS",
+					"options":
+					[
+						"Catalunya::Barcelona,Tarragona,Lleida,Girona",
+						"Espanya::Andalusia,Principat d'Astúries,País Basc,Cantàbria,Castella i Lleó,Galícia,Regió de Múrcia,La Rioja,Aragó,Illes Balears,Canàries,Castella-la Manxa,Extremadura,Comunitat de Madrid,Navarra,País Valencià",
+						"França::Auvergne-Rhône-Alpes,Bourgogne-Franche-Compté,Bretagne,Centre-Val de Loire,Corse,Grand-Est,Hauts de France,Île de France,Normandie,Nouvelle-Aquitaine,Occitanie,Pays de la Loire,Provence-Alpes Côte-D'Azur",
+						"Alemanya",
+						"Bèlgica",
+						"Escandinàvia",
+						"Holanda",
+						"Itàlia",
+						"Gran Bretanya",
+						"Resta d'Europa",
+						"Suïssa",
+						"Amèrica Nord",
+						"Resta d'Amèrica",
+						"Àsia",
+						"Àfrica",
+						"Oceania",
+						"Orient Mitjà"
+					]
+				},
+				{
+					"question": "2 .- Què volien?",
+					"type":"MULTIPLE_OPTIONS",
+					"options":
+					[
+						"Visitar Monuments",
+						"Platges",
+						"Senderisme",
+						"Ciclisme",
+						"Esports",
+						"Activitats de Lleure",
+						"Comerç",
+						"Hotels",
+						"Càmpings",
+						"Apartaments",
+						"Transport",
+						"Animació/Festes",
+						"Excursions i visites als voltans",
+						"Gastronomia",
+						"Consulta per telèfon",
+						"other:Altres"
+					]
+				},
+				{
+					"question": "3 .- Amb   qui   ha   vingut?//4 .- Turista o Excursionista?",
+					"type":"MULTIPLE_QUESTIONS",
+					"options":
+					[
+						"Sol",
+						"Parella",
+						"Família",
+						"Grup",
+						"-",
+						"Turista",
+						"Excursionista"
+
+					]
+				},
+
+				{
+					"question": "Tot Correcte?",
+					"type":"FINAL_LOG"
+
+				}
+
+
+			]
+		}
+	]
+}

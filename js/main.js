@@ -8,6 +8,7 @@ $(document).ready(function(){
 	var swapQuestion = null;
 	var addOption = null;
 	var delOption = null;
+	var generateJSON = null;
 
 	updateEvents();
 
@@ -24,6 +25,7 @@ $(document).ready(function(){
 		swapQuestion = $(".swapQuestion");
 		addOption = $(".addOption");
 		delOption = $(".delOption");
+		generateJSON = $("#generateJSON");
 
 		addQuestion.unbind();
 		delQuestion.unbind();
@@ -32,6 +34,7 @@ $(document).ready(function(){
 		delOption.unbind();
 		legend.unbind();
 		label.unbind();
+		generateJSON.unbind();
 
 		addQuestion.click(generateQuestionFunction);
 		delQuestion.click(removeParentFunction);
@@ -40,6 +43,7 @@ $(document).ready(function(){
 		delOption.click(removeParentFunction);
 		legend.dblclick(changeNameFunction);
 		label.dblclick(changeNameFunction);
+		generateJSON.click(testDownload);
 	}
 
 	function generateQuestionFunction() {
@@ -49,14 +53,35 @@ $(document).ready(function(){
 
 		var legend = document.createElement("legend");
 		var legendContent = document.createTextNode("Sample");
+
+		var hiddenQuestion = document.createElement("input");
+		hiddenQuestion.setAttribute("type", "hidden" );
+		hiddenQuestion.setAttribute("id", "questionId" );
+		hiddenQuestion.setAttribute("name", "questionId" );
+		hiddenQuestion.setAttribute("value", questionsCounter );
+
+		var hiddenOptionsNumber = document.createElement("input");
+		hiddenOptionsNumber.setAttribute("type", "hidden" );
+		hiddenOptionsNumber.setAttribute("id", "optionsNumber" );
+		hiddenOptionsNumber.setAttribute("name", "optionsNumber" );
+		hiddenOptionsNumber.setAttribute("value", 2 );
+
+		var hiddenOptionsType = document.createElement("input");
+		hiddenOptionsType.setAttribute("type", "hidden" );
+		hiddenOptionsType.setAttribute("id", "optionsType" );
+		hiddenOptionsType.setAttribute("name", "optionsType" );
+		hiddenOptionsType.setAttribute("value", "radio" );
 		
 		$(legend).append(legendContent);
 		$(fieldset).append(legend);
+		$(fieldset).append(hiddenQuestion);
+		$(fieldset).append(hiddenOptionsNumber);
+		$(fieldset).append(hiddenOptionsType);
 
 		// Create a "div" with 2 options
 			var div = document.createElement("div");
 			for (var i = 1 ; i <= 2 ; i++) {
-				$(div).append( patternOptionFunction(i) );
+				$(div).append( patternOptionFunction(i, questionsCounter) );
 			}
 			$(fieldset).append(div);
 
@@ -91,7 +116,7 @@ $(document).ready(function(){
 
 	}
 
-	function patternOptionFunction(i) {
+	function patternOptionFunction(i, currentQuestion) {
 		var div = document.createElement("div");
 
 		var buttonDelete = document.createElement("button");
@@ -101,12 +126,11 @@ $(document).ready(function(){
 
 		var input = document.createElement("input");
 		input.setAttribute("type", "radio" );
-		input.setAttribute("name", "sample" );
-		input.setAttribute("id", ("opt"+questionsCounter+"-"+i) );
-		input.setAttribute("name", ("question"+questionsCounter) );
+		input.setAttribute("id", ("opt"+currentQuestion+"-"+i) );
+		input.setAttribute("name", ("question"+currentQuestion) );
 
 		var label = document.createElement("label");
-		label.setAttribute("for", ("opt"+questionsCounter+"-"+i) );
+		label.setAttribute("for", ("opt"+currentQuestion+"-"+i) );
 		var labelContent = document.createTextNode(("Option "+i));
 		$(label).append(labelContent);
 
@@ -121,7 +145,14 @@ $(document).ready(function(){
 	}
 
 	function addOptionFunction() {
-		$(this).parent().children("div").append( patternOptionFunction(3) );
+		var currentQuestion = $(this).parent().children("#questionId").attr("value");
+
+
+		var optionsNumber = parseInt( $(this).parent().children("#optionsNumber").attr("value") )+1;
+		$(this).parent().children("#optionsNumber").attr("value", optionsNumber);
+
+		$(this).parent().children("div").append( patternOptionFunction(optionsNumber, currentQuestion) );
+		updateEvents();
 	}
 
 	function removeParentFunction() {
@@ -129,11 +160,12 @@ $(document).ready(function(){
 	}
 
 	function swapOptionsTypeFunction() {
-		var options = $(this).parent().children("div");
-		if ( options.first().children("div").first().children("input").first().attr("type") == "radio" ) {
-			options.children("div").children("input").attr( "type","checkbox" );
-		} else {
-			options.children("div").children("input").attr( "type","radio" );
+		var options = $(this).parent();
+		if ( options.children("#optionsType").attr("value") == "radio" ) {
+			options.children("div").children("div").children("input").attr( "type","checkbox" );
+		} else { /////////////////////////////// mirar
+			console.log(options.children("div").children("div").children("input").attr( "type"));
+			options.children("div").children("div").children("input").attr( "type","radio" );
 		}
 	}
 
@@ -142,5 +174,20 @@ $(document).ready(function(){
 		if (content != null) {
 			$(this).html(content);
 		}
+	}
+	function testDownload() {
+		download("myfilename"+".json", "nepe");
+	}
+	function download(filename, text) {
+		var element = document.createElement('a');
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		element.setAttribute('download', filename);
+
+		element.style.display = 'none';
+		document.body.appendChild(element);
+
+		element.click();
+
+		document.body.removeChild(element);
 	}
 });
