@@ -1,0 +1,32 @@
+﻿{
+  "name": "  Enquesta del Mercat Municipal de Rubí",
+  "rows":
+          [
+            {
+              "questions":
+                          [
+                            {
+                              "question": " ",
+                              "type":"HOME",
+                              "options": "18::100"
+                            },
+
+                            {
+                              "question": "1.- Hora d'entrada?",
+                              "type":"TIME"
+                            },
+                            {
+                              "question": "2.- Matrícula del cotxe",
+                              "type":"LICENSE_PLATE",
+                              "options": "Escrigui la matrícula..."
+                            },
+
+                            {
+                              "question": "Tot Correcte?",
+                              "type":"FINAL_LOG"
+
+                            }
+                          ]
+            }
+          ]
+}

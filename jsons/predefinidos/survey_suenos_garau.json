@@ -1,0 +1,74 @@
+﻿{
+  "name": "  Enquesta de satisfacción de Sueños Garau",
+  "colorPrimary" :"#FA58AC",
+  "colorSecondary": "#FA58AC",
+  "lang":"es_ES",
+  "rows":
+  [
+    {
+      "idTablet": "TABLET8",
+      "version": "1.1",
+      "questions":
+      [
+        {
+          "question": " ",
+          "type":"HOME",
+          "options":
+          ["surveys_done"]
+        },
+
+        {
+          "question": "¿Cómo valoras la atención de la dependienta?",
+          "type":"SATISFACTION",
+          "options":
+          [
+            4
+          ]
+        },
+        {
+          "question": "¿En qué hemos fallado?",
+          "type":"MULTIPLE_OPTIONS",
+          "options":
+          [
+            "Mal atendido",
+            "Precios altos",
+            "Mucha cola",
+            "No tenian el producto",
+            "No tenian mi talla",
+            "other:Otros"
+          ]
+        },
+        {
+          "question": "¿En qué podemos mejorar?",
+          "type":"FREE_TEXT",
+          "options":
+          [
+            "Escríba algo..."
+
+          ]
+        },
+        {
+          "question": "¿Felicitanos en...?",
+          "type":"MULTIPLE_OPTIONS",
+          "options":
+          [
+            "Trato de la dependienta",
+            "Buenos precios",
+            "Buenos productos",
+            "Buena organización",
+            "Buena limpieza",
+            "other:Otros"
+
+          ]
+        },
+        {
+          "question": "Tot Correcte?",
+          "type":"FINAL_LOG"
+
+        }
+
+
+      ]
+    }
+  ]
+}

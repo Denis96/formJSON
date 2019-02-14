@@ -1,0 +1,66 @@
+﻿{
+  "name": "  Enquesta de satisfacción de Sueños Garau",
+  "colorPrimary" :"#0000FF",
+  "colorSecondary": "#0000FF",
+  "lang":"car_ES",
+  "rows":
+  [
+    {
+      "idTablet": "TABLET8",
+      "version": "1.1",
+      "questions":
+      [
+        {
+          "question": " ",
+          "type":"HOME",
+          "options":
+          ["surveys_done"]
+        },
+
+
+        {
+          "question": "1.- Please rate the attention recieved",
+          "type":"SATISFACTION",
+          "options":
+          [
+            "4"
+          ]
+        },
+        {
+          "question": "2.- Which product did you find the most interesting?",
+          "type":"FREE_TEXT",
+          "options":
+          [
+            "Escríba algo..."
+
+          ]
+        },
+        {
+          "question": "3.- Would you like to work with us?",
+          "type":"OPTIONS",
+          "options":
+          [
+            "Yes",
+            "No::Opcio1, Opcio2, Opcio3, Opcio4, Opcio5, Opcio6",
+            "Maybe"
+          ]
+        },
+        {
+          "question": "4.- Leave your eMail or phone number if you wish to",
+          "type":"FREE_TEXT",
+          "options":
+          [
+            "Write something..."
+          ]
+        },
+        {
+          "question": "Everything correct?",
+          "type":"FINAL_LOG"
+
+        }
+
+
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+﻿{
+  "name": "  Enquesta de satisfacción de Sueños Garau",
+  "colorPrimary" :"#0000FF",
+  "colorSecondary": "#0000FF",
+  "lang":"ca_ES",
+  "rows":
+  [
+    {
+      "idTablet": "TABLET8",
+      "version": "1.1",
+      "questions":
+      [
+        {
+          "question": " ",
+          "type":"HOME",
+          "options":
+          ["surveys_done"]
+        },
+
+
+        {
+          "question": "1.- Valori l'explicació i atenció rebuda",
+          "type":"SATISFACTION",
+          "options":
+          [
+            "4"
+          ]
+        },
+        {
+          "question": "2.- Quin producte l'hi ha semblat més interessant",
+          "type":"FREE_TEXT",
+          "options":
+          [
+            "Escríba algo..."
+
+          ]
+        },
+        {
+          "question": "3.- Vol fer una prova amb nosaltres",
+          "type":"OPTIONS",
+          "options":
+          [
+            "Sí",
+            "No::Opcio1, Opcio2, Opcio3, Opcio4, Opcio5, Opcio6",
+            "Potser"
+          ]
+        },
+        {
+          "question": "4.- Deixins el seu eMail o telfèfon si vol",
+          "type":"FREE_TEXT",
+          "options":
+          [
+            "Escrigui algo..."
+          ]
+        },
+        {
+          "question": "Tot correcte?",
+          "type":"FINAL_LOG"
+
+        }
+
+
+      ]
+    }
+  ]
+}

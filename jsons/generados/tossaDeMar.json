@@ -1,0 +1,63 @@
+{
+   "name":"Enquesta de satisfacció de Tossa de Mar",
+   "rows":[
+	  {
+		 "idTablet":"TABLET8",
+		 "version":"1.1",
+		 "questions":[
+			{
+			   "question":" ",
+			   "type":"HOME"
+			},
+			{
+			   "question":"1 .- D'on vens?",
+			   "type":"OPTIONS",
+			   "options":[
+				  "Catalunya",
+				  "Espanya",
+				  "França",
+				  "Alemanya",
+				  "Bèlgica",
+				  "Escandinàvia",
+				  "Holanda"
+			   ]
+			},
+			{
+			   "question":"2 .- Què volien?",
+			   "type":"MULTIPLE_OPTIONS",
+			   "options":[
+				  "Visitar Monuments",
+				  "Platges",
+				  "Senderisme",
+				  "Ciclisme",
+				  "Esports",
+				  "Activitats de Lleure",
+				  "Comerç"
+			   ]
+			},
+			{
+			   "question":"3 .- Amb   qui   ha   vingut?",
+			   "type":"MULTIPLE_OPTIONS",
+			   "options":[
+				  "Sol",
+				  "Parella",
+				  "Família",
+				  "Grup"
+			   ]
+			},
+			{
+			   "question":"4 .- Turista o Excursionista?",
+			   "type":"OPTIONS",
+			   "options":[
+				  "Turista",
+				  "Excursionista"
+			   ]
+			},
+			{
+			   "questions":"Tot Correcte?",
+			   "type":"FINAL_LOG"
+			}
+		 ]
+	  }
+   ]
+}

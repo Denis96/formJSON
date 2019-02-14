@@ -1,0 +1,96 @@
+﻿{
+  "name": "  Valoración stand AEInnova",
+  "colorPrimary" :"#0000FF",
+  "colorSecondary": "#0000FF",
+  "lang":"es_ES",
+  "rows":
+  [
+    {
+      "idTablet": "TABLET7",
+      "version": "1.1",
+      "questions":
+      [
+        {
+          "question": " ",
+          "type":"HOME",
+          "options":
+          ["surveys_done"]
+        },
+        {
+          "question": "1 .- ¿Es la primera vez que asistes a este evento?",
+          "type":"OPTIONS",
+          "options":
+          [
+            "Si",
+            "No"
+          ]
+        },
+        {
+          "question": "2 .- ¿Has asistido por la invitación de nuestra empresa?",
+          "type":"OPTIONS",
+          "options":
+          [
+            "Si",
+            "No"
+          ]
+        },
+        {
+          "question": "3 .- ¿Se te ha asesorado adecuadamente?",
+          "type":"SATISFACTION",
+          "options":
+          [
+            "4"
+          ]
+        },
+        {
+          "question": "4 .- ¿Encontraste lo que buscabas en nuestro stand?",
+          "type":"OPTIONS",
+          "options":
+          [
+            "Si",
+            "No"
+          ]
+        },
+        {
+          "question": "5 .- ¿Te ha gustado su diseño?",
+          "type":"SATISFACTION",
+          "options":
+          [
+            "4"
+          ]
+        },
+        {
+          "question": "6 .- ¿Recomendarías nuestro productos/servicios?",
+          "type":"SATISFACTION",
+          "options":
+          [
+            "4"
+          ]
+        },
+        {
+          "question": "7 .- ¿Nos quieres dejar tus datos de contacto?",
+          "type":"FREE_TEXT",
+          "options":
+          [
+            "Escriba algo..."
+          ]
+        },
+        {
+          "question": "8 .- Comentario adicional",
+          "type":"FREE_TEXT",
+          "options":
+          [
+            "Escriba algo..."
+          ]
+        },
+        {
+          "question": "Tot Correcte?",
+          "type":"FINAL_LOG"
+
+        }
+
+
+      ]
+    }
+  ]
+}

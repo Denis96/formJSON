@@ -8,6 +8,8 @@ $(document).ready(function(){
 	var delQuestion = null;
 	var swapQuestion = null;
 	var addOption = null;
+		var addSubOption = null;
+		var delSubOption = null;
 	var delOption = null;
 	var generateJSON = null;
 
@@ -27,6 +29,8 @@ $(document).ready(function(){
 			delQuestion = $(".delQuestion");
 			swapQuestion = $(".swapQuestion");
 			addOption = $(".addOption");
+				addSubOption = $(".addSubOption");
+				delSubOption = $(".delSubOption");
 			delOption = $(".delOption");
 			generateJSON = $("#generateJSON");
 
@@ -38,6 +42,8 @@ $(document).ready(function(){
 			delQuestion.unbind();
 			swapQuestion.unbind();
 			addOption.unbind();
+				addSubOption.unbind();
+				delSubOption.unbind();
 			delOption.unbind();
 			generateJSON.unbind();
 
@@ -49,6 +55,8 @@ $(document).ready(function(){
 			delQuestion.click(removeParentFunction);
 			swapQuestion.click(swapOptionsTypeFunction);
 			addOption.click(addOptionFunction);
+				addSubOption.click(addSubOptionFunction);
+				delSubOption.click(removeSubOptionFunction);
 			delOption.click(removeParentFunction);
 			generateJSON.click(prepareDownload);
 	}
@@ -91,32 +99,32 @@ $(document).ready(function(){
 			var div = document.createElement("div");
 			div.setAttribute("class", "options" );
 			for (var i = 1 ; i <= 2 ; i++) {
-				$(div).append( patternOptionFunction(i, questionsCounter, "radio") );
+				$(div).append( patternOptionRadioFunction(i, questionsCounter, "radio") );
 			}
 			$(fieldset).append(div);
 
-		//	Create a Add, Delete and Swap buttons
+		//	Create a Add, Delete
 			var buttonAdd = document.createElement("button");
 			buttonAdd.setAttribute("class", "addOption" );
 			var buttonAddContent = document.createTextNode("add");
 			$(buttonAdd).append(buttonAddContent);
 
 			var buttonDelete = document.createElement("button");
-			buttonDelete.setAttribute("class", "delQuestion" );
-			var buttonDeleteContent = document.createTextNode("del");
+			buttonDelete.setAttribute("class", "buttonColorDel" );
+			var buttonDeleteContent = document.createTextNode("delete question");
 			$(buttonDelete).append(buttonDeleteContent);
 
-			var buttonSwap = document.createElement("button");
+			/*var buttonSwap = document.createElement("button");
 			buttonSwap.setAttribute("class", "swapQuestion" );
 			var buttonSwapContent = document.createTextNode("swap");
-			$(buttonSwap).append(buttonSwapContent);
+			$(buttonSwap).append(buttonSwapContent);*/
 		
 		var br = document.createElement("br");
 
 		$(fieldset).append(br);
 		$(fieldset).append(buttonAdd);
 		$(fieldset).append(buttonDelete);
-		$(fieldset).append(buttonSwap);
+		//$(fieldset).append(buttonSwap);
 
 		$(form).append(fieldset);
 
@@ -127,18 +135,39 @@ $(document).ready(function(){
 	}
 
 	// Returns a div with 2 options
-	function patternOptionFunction(number, currentQuestion, optionType) {
+	function patternOptionRadioFunction(number, currentQuestion, optionType, level) {
 		var div = document.createElement("div");
 
 		//	Delete button
 			var buttonDelete = document.createElement("button");
-			buttonDelete.setAttribute("class", "delOption" );
+			buttonDelete.setAttribute("class", "delOption buttonOption buttonColorDel" );
 			var buttonDeleteContent = document.createTextNode("X");
 			$(buttonDelete).append(buttonDeleteContent);
 
-		//	Input (radio or checkbox)
+			if ( level!=2 ) { ////////////////////////// cambiar cuando se cambie la generacion de preguntas
+				//	Delete button
+					var buttonDelete = document.createElement("button");
+					buttonDelete.setAttribute("class", "delOption buttonOption buttonColorDel" );
+					var buttonDeleteContent = document.createTextNode("X");
+					$(buttonDelete).append(buttonDeleteContent);
+
+				//	Add button
+					var buttonAdd = document.createElement("button");
+					buttonAdd.setAttribute("class", "addSubOption buttonOption buttonColorAdd" );
+					var buttonAddContent = document.createTextNode("+");
+					$(buttonAdd).append(buttonAddContent);
+			} else {
+				//	Delete button
+					var buttonDelete = document.createElement("button");
+					buttonDelete.setAttribute("class", "delSubOption buttonOption buttonColorDel" );
+					var buttonDeleteContent = document.createTextNode("X");
+					$(buttonDelete).append(buttonDeleteContent);
+			}
+
+		//	Input (radio or checkbox (+15))
 			var input = document.createElement("input");
 			input.setAttribute("type", optionType );
+			input.setAttribute("disabled", "disabled" );
 			input.setAttribute("id", ("opt"+currentQuestion+"-"+number) );
 			input.setAttribute("name", ("question"+currentQuestion) );
 
@@ -148,12 +177,10 @@ $(document).ready(function(){
 			var labelContent = document.createTextNode(("New option"));
 			$(label).append(labelContent);
 
-		var br = document.createElement("br");
-
 		$(div).append(buttonDelete);
+		$(div).append(buttonAdd);
 		$(div).append(input);
 		$(div).append(label);
-		$(div).append(br);
 
 		return div;
 	}
@@ -167,8 +194,45 @@ $(document).ready(function(){
 			$(this).parent().children(".optionsNumber").attr("value", optionsNumber);
 
 
-		$(this).parent().children("div").append( patternOptionFunction(optionsNumber, currentQuestion, optionType) );
+		$(this).parent().children("div").append( patternOptionRadioFunction(optionsNumber, currentQuestion, optionType) );
 		updateEvents();
+	}
+
+	function addSubOptionFunction() {
+		if( !$(this).parent().has(".subOption").length ) {
+			var div = document.createElement("div");
+			div.setAttribute("class", "subOption" );
+			$(this).parent().append( div );
+
+			var hiddenOptionId = document.createElement("input");
+			hiddenOptionId.setAttribute("type", "hidden" );
+			hiddenOptionId.setAttribute("class", "optionId" );
+			hiddenOptionId.setAttribute("name", "optionId" );
+			hiddenOptionId.setAttribute("value", 1 );
+
+			var hiddenOptionsNumber = document.createElement("input");
+			hiddenOptionsNumber.setAttribute("type", "hidden" );
+			hiddenOptionsNumber.setAttribute("class", "optionsNumber" );
+			hiddenOptionsNumber.setAttribute("name", "optionsNumber" );
+			hiddenOptionsNumber.setAttribute("value", 1 );
+
+			$(this).parent().children(".subOption").append( hiddenOptionId );
+			$(this).parent().children(".subOption").append( hiddenOptionsNumber );
+		}
+
+		var optionsNumber = $(this).parent().children(".subOption").children(".optionId").val();
+		var optionId = $(this).parent().children(".subOption").children(".optionsNumber").val();
+
+		$(this).parent().children(".subOption").append( patternOptionRadioFunction(optionsNumber, optionId, "radio", 2) );
+		updateEvents();
+	}
+
+	function removeSubOptionFunction() {
+		console.log($(this).parent().children("div"));
+		$(this).parent().parent().children("div").length <= 1 ?
+				$(this).parent().parent().remove() :
+				$(this).parent().remove();
+
 	}
 
 	function removeParentFunction() {
@@ -187,7 +251,7 @@ $(document).ready(function(){
 	}
 
 	function changeNameFunction() {
-		var content = prompt("", $(this).html());
+		var content = prompt("", $(this).text());
 		if (content != null) {
 			$(this).html(content);
 		}

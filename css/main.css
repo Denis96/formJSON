@@ -24,18 +24,16 @@ input {
 	width: auto;
 	padding: 0.5em 1em;
 }
-.delOption {
+.buttonOption {
 	width: 2em;
-	height: : 2em;
+	height: 2em;
 	padding: 2px;
+}
+.buttonColorDel {
 	background-color: Salmon;
 	border-color: Crimson;
 }
-.delQuestion {
-	background-color: Salmon;
-	border-color: Crimson;
-}
-.swapQuestion {
+.buttonColorAdd {
 	background-color: MediumSpringGreen;
 	border-color: LimeGreen;
 }
@@ -47,6 +45,9 @@ input {
 	border-color: DarkTurquoise;
 	border-width: 3px 0 0 2em;
 	border-radius: 1em; 
+}
+.subOption {
+	margin: 0 3.5em;
 }
 .middleContent {
 	text-align: center;

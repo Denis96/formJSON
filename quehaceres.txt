@@ -1,6 +1,8 @@
 Que haceres de la FCT:
-- when cambiar una Opt
-	- cambie el "for" del "label"
-	- cambie el "id" del "input"
-- añadir opocion correctament
-- form to json
+- segundo nivel de Options
+- generar formulario apartir de un boton con input de texto
+- Select para elegir tipo de preguntas
+	- cambiar generación de tipo checkbox(MULTIPLE_OPTIONS)
+- que las sub opciones otros nombres...
+
+- Drag Preguntas y opciones
