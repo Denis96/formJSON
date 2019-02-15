@@ -16,30 +16,38 @@
 				<h2>FORM HAPPYCUSTOMERBOX</h2>
 				
 			</div>
-			
-			<div class="main">
-				<h2>Your corrent form:</h2>
-				
-				<div class="currentForm">
-					<div id="form">
-						<h2 id="formName">
-							<span class="showName">Form name</span>
-							<input type="text" class="hiddenName" hidden="hidden">
-						</h2>
-					</div>
-					<p>Note: double click for edit the texts.</p>
-				</div>
-			
-				<div class="menuOptions">
-					<h2>Options:</h2>
-					<button id="addQuestion">add question</button>
-				</div>
-				
-			</div>
 
-			<div class="middleContent">
-				<input type="text" class="inputLeftPos" id="jsonName" name="jsonName" placeholder="Filename">
-				<button id="generateJSON" class="buttonRightPos">Generate JSON</button>
+			<div class="generateFormDiv">
+				<button id="generateForm" class="inputLeftPos">Generate Form</button>
+				<input type="text" class="buttonRightPos" id="formNameText" name="formName" placeholder="Form name">
+			</div>
+			
+			<div id="formContainer" hidden="true">
+
+				<div class="main">
+					<h2>Your corrent form:</h2>
+					
+					<div class="currentForm">
+						<div id="form">
+							<h2 id="formName">
+								<span class="showName">Form name</span>
+								<input type="text" class="hiddenName" hidden="hidden">
+							</h2>
+						</div>
+						<p>Note: double click for edit the texts.</p>
+					</div>
+				
+					<div class="menuOptions">
+						<h2>Options:</h2>
+						<button id="addQuestion">add question</button>
+					</div>
+					
+				</div>
+
+				<div class="middleContent">
+					<input type="text" class="inputLeftPos" id="jsonName" name="jsonName" placeholder="Filename">
+					<button id="generateJSON" class="buttonRightPos">Generate JSON</button>
+				</div>
 			</div>
 
 		</div>

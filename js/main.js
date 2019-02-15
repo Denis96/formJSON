@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+	var showForm = null;
 	var form = null;
 	var formName = null;
 	var legend = null;
@@ -22,6 +23,7 @@ $(document).ready(function(){
 
 	function updateEvents() {
 		// Search all elements
+			showForm = $("#generateForm");
 			form = $("#form");
 			formName = $("#formName > span");
 			legend = $("legend > span");
@@ -51,9 +53,11 @@ $(document).ready(function(){
 			generateJSON.unbind();
 
 		//	Returns assign events
+			showForm.click(showFormFunction);
 			formName.dblclick(changeNameShowInputFunction);
 			legend.dblclick(changeNameShowInputFunction);
 			label.dblclick(changeNameShowInputFunction);
+			hiddenNames.keypress(changeFocusFunction);
 			hiddenNames.focusout(changeNameShowTextFunction);
 			addQuestion.click(generateQuestionFunction);
 			delQuestion.click(removeParentFunction);
@@ -63,6 +67,15 @@ $(document).ready(function(){
 				delSubOption.click(removeSubOptionFunction);
 			delOption.click(removeParentFunction);
 			generateJSON.click(prepareDownload);
+	}
+
+	function showFormFunction() {
+		var formName = $(this).parent().children("#formNameText").val();
+		if (formName != "") {
+			$("#formName > .showName").text(formName);
+			$(this).parent().remove();
+			$("#formContainer").removeAttr("hidden");
+		}
 	}
 
 	function generateQuestionFunction() {
@@ -281,9 +294,16 @@ $(document).ready(function(){
 
 	function changeNameShowTextFunction() {
 		var hiddenName = $(this).parent().children(".showName");
-		hiddenName.text( $(this).val() );
+		$(this).val() != "" ? hiddenName.text( $(this).val() ) : "";
 		hiddenName.removeAttr("hidden");
 		$(this).attr("hidden","true");
+	}
+
+	function changeFocusFunction(e) {
+		if (e.key == "Enter") {
+			e.preventDefault();
+			$(this).blur();
+		}
 	}
 
 

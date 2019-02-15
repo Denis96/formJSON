@@ -24,6 +24,9 @@ input {
 	width: auto;
 	padding: 0.5em 1em;
 }
+.generateFormDiv {
+	text-align: center;
+}
 .buttonOption {
 	width: 2em;
 	height: 2em;
