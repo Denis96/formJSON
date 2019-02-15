@@ -3,6 +3,7 @@ $(document).ready(function(){
 	var form = null;
 	var formName = null;
 	var legend = null;
+	var hiddenNames = null;
 	var label = null;
 	var addQuestion = null;
 	var delQuestion = null;
@@ -22,9 +23,10 @@ $(document).ready(function(){
 	function updateEvents() {
 		// Search all elements
 			form = $("#form");
-			formName = $("#formName");
-			legend = $("legend");
+			formName = $("#formName > span");
+			legend = $("legend > span");
 			label = $("label");
+			hiddenNames = $(".hiddenName");
 			addQuestion = $("#addQuestion");
 			delQuestion = $(".delQuestion");
 			swapQuestion = $(".swapQuestion");
@@ -38,6 +40,7 @@ $(document).ready(function(){
 			formName.unbind();
 			legend.unbind();
 			label.unbind();
+			hiddenNames.unbind();
 			addQuestion.unbind();
 			delQuestion.unbind();
 			swapQuestion.unbind();
@@ -48,9 +51,10 @@ $(document).ready(function(){
 			generateJSON.unbind();
 
 		//	Returns assign events
-			formName.dblclick(changeNameFunction);
-			legend.dblclick(changeNameFunction);
-			label.dblclick(changeNameFunction);
+			formName.dblclick(changeNameShowInputFunction);
+			legend.dblclick(changeNameShowInputFunction);
+			label.dblclick(changeNameShowInputFunction);
+			hiddenNames.focusout(changeNameShowTextFunction);
 			addQuestion.click(generateQuestionFunction);
 			delQuestion.click(removeParentFunction);
 			swapQuestion.click(swapOptionsTypeFunction);
@@ -67,7 +71,15 @@ $(document).ready(function(){
 			fieldset.setAttribute("id", ("question"+questionsCounter) );
 
 			var legend = document.createElement("legend");
+			var legendSpan = document.createElement("span");
+			legendSpan.setAttribute("class", "showName legendSpan" );
+
 			var legendContent = document.createTextNode("Question "+questionsCounter);
+
+			var hiddenName = document.createElement("input");
+			hiddenName.setAttribute("type", "text" );
+			hiddenName.setAttribute("hidden", "true" );
+			hiddenName.setAttribute("class", "hiddenName" );
 
 
 		//	Create 3 hidden inputs for control the question
@@ -89,7 +101,9 @@ $(document).ready(function(){
 			hiddenOptionsType.setAttribute("name", "optionsType" );
 			hiddenOptionsType.setAttribute("value", "radio" );
 		
-		$(legend).append(legendContent);
+			$(legendSpan).append(legendContent);
+			$(legend).append(legendSpan);
+			$(legend).append(hiddenName);
 		$(fieldset).append(legend);
 		$(fieldset).append(hiddenQuestion);
 		$(fieldset).append(hiddenOptionsNumber);
@@ -173,14 +187,21 @@ $(document).ready(function(){
 
 		//	Label for input
 			var label = document.createElement("label");
+			label.setAttribute("class", "showName" );
 			label.setAttribute("for", ("opt"+currentQuestion+"-"+number) );
 			var labelContent = document.createTextNode(("New option"));
 			$(label).append(labelContent);
+
+			var hiddenName = document.createElement("input");
+			hiddenName.setAttribute("type", "text" );
+			hiddenName.setAttribute("hidden", "true" );
+			hiddenName.setAttribute("class", "hiddenName" );
 
 		$(div).append(buttonDelete);
 		$(div).append(buttonAdd);
 		$(div).append(input);
 		$(div).append(label);
+		$(div).append(hiddenName);
 
 		return div;
 	}
@@ -250,18 +271,26 @@ $(document).ready(function(){
 		}
 	}
 
-	function changeNameFunction() {
-		var content = prompt("", $(this).text());
-		if (content != null) {
-			$(this).html(content);
-		}
+	function changeNameShowInputFunction() {
+		var hiddenName = $(this).parent().children(".hiddenName");
+		hiddenName.val( $(this).text() );
+		hiddenName.removeAttr("hidden");
+		hiddenName.focus();
+		$(this).attr("hidden","true");
+	}
+
+	function changeNameShowTextFunction() {
+		var hiddenName = $(this).parent().children(".showName");
+		hiddenName.text( $(this).val() );
+		hiddenName.removeAttr("hidden");
+		$(this).attr("hidden","true");
 	}
 
 
 	//////	JSON Funtion 
 		function generateJSONFunction() {
 			var content = "{";
-				content += "\"name\": \""+ $(form).children("#formName").text() +"\",";
+				content += "\"name\": \""+ $(form).children("#formName").children(".showName").text() +"\",";
 				content += "\"rows\": [ {";
 					content += "\"idTablet\": \"TABLET8\",";
 					content += "\"version\": \"1.1\",";
@@ -272,7 +301,7 @@ $(document).ready(function(){
 						//	opcions from the form
 						$(form).children("fieldset").each(function( index ) {
 							content += ", {";
-							content += "\"question\": \""+ $(this).children("legend").text() +"\",";
+							content += "\"question\": \""+ $(this).children("legend").children(".showName").text() +"\",";
 							content += "\"type\": \""
 								switch ( $(this).children(".optionsType").val() ) {
 									case "radio":		content += "OPTIONS";			break;
@@ -282,9 +311,23 @@ $(document).ready(function(){
 								}
 								content += "\",";
 							content += "\"options\": [";
-							content += "\""+ $(this).children(".options").children("div:first-child").children("label").text() +"\"";
 							$(this).children(".options").children("div").each(function( index ) {
-								index != 0 ? content += ", \""+ $(this).children("label").text() +"\"" : "";
+								content += "\""+ $(this).children("label").text();
+
+								if( $( this ).has( ".subOption" ).length ) {
+									content += "::";
+									$(this).children(".subOption").children("div").each(function( indexSubOption ) {
+										content += $(this).children("label").text();
+										if (indexSubOption+1 != $(this).parent().children("div").length) {
+											content += ",";
+										}
+									});
+								}
+
+								content += "\"";
+								if (index+1 != $(this).parent().children("div").length) {
+									content += ", ";
+								}
 							});
 							content += "] }";
 						});

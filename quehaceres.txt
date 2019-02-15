@@ -1,5 +1,4 @@
 Que haceres de la FCT:
-- segundo nivel de Options
 - generar formulario apartir de un boton con input de texto
 - Select para elegir tipo de preguntas
 	- cambiar generación de tipo checkbox(MULTIPLE_OPTIONS)
