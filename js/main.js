@@ -148,7 +148,7 @@ $(document).ready(function(){
 			$(buttonAdd).append(buttonAddContent);
 
 			var buttonDelete = document.createElement("button");
-			buttonDelete.setAttribute("class", "buttonColorDel" );
+			buttonDelete.setAttribute("class", "delQuestion buttonColorDel" );
 			var buttonDeleteContent = document.createTextNode("delete question");
 			$(buttonDelete).append(buttonDeleteContent);
 
