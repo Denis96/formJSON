@@ -25,24 +25,26 @@
 			<div id="formContainer" hidden="true">
 
 				<div class="main">
-					<h2>Your corrent form:</h2>
+					<h2 id="formName">
+						<span class="showName">Form name</span>
+						<input type="text" class="hiddenName" hidden="hidden">
+					</h2>
+
+					<div class="menuOptions">
+						<h3>Add new question:</h3>
+							Options:
+						 	<select>
+								<option value="Radio" id="addQuestion">Radio</option>
+								<option value="Checkbox" id="addQuestionCB">Checkbox</option>
+							</select> 
+					</div>
 					
 					<div class="currentForm">
 						<div id="form">
-							<h2 id="formName">
-								<span class="showName">Form name</span>
-								<input type="text" class="hiddenName" hidden="hidden">
-							</h2>
 						</div>
 						<p>Note: double click for edit the texts.</p>
 					</div>
 				
-					<div class="menuOptions">
-						<h2>Options:</h2>
-						<button id="addQuestion">add question (Radio)</button>
-						<button id="addQuestionCB">add question (Checkbox)</button>
-					</div>
-					
 				</div>
 
 				<div class="middleContent">
