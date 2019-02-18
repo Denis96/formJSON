@@ -98,8 +98,25 @@ $(document).ready(function(){
 			hiddenName.setAttribute("hidden", "true" );
 			hiddenName.setAttribute("class", "hiddenName" );
 
+			//	Create a "div" with 2 options
+			var div = document.createElement("div");
+			div.setAttribute("class", "options" );
+			for (var i = 1 ; i <= 2 ; i++) {
+				switch ($(this).attr("id")) {
+					case "addQuestion": {
+						$(div).append( patternOptionRadioFunction(i, questionsCounter, "radio") );
+						var questionType = "radio";
+					} break;
+					case "addQuestionCB": {
+						$(div).append( patternOptionRadioFunction(i, questionsCounter, "checkbox") );
+						var questionType = "checkbox";
+					}
+				}
+			}
+			$(fieldset).append(div);
 
-		//	Create 3 hidden inputs for control the question
+
+		//	Create 3 hidden inputs to control the question
 			var hiddenQuestion = document.createElement("input");
 			hiddenQuestion.setAttribute("type", "hidden" );
 			hiddenQuestion.setAttribute("class", "questionId" );
@@ -116,7 +133,7 @@ $(document).ready(function(){
 			hiddenOptionsType.setAttribute("type", "hidden" );
 			hiddenOptionsType.setAttribute("class", "optionsType" );
 			hiddenOptionsType.setAttribute("name", "optionsType" );
-			hiddenOptionsType.setAttribute("value", "radio" );
+			hiddenOptionsType.setAttribute("value", questionType );
 		
 			$(legendSpan).append(legendContent);
 			$(legend).append(legendSpan);
@@ -125,21 +142,6 @@ $(document).ready(function(){
 		$(fieldset).append(hiddenQuestion);
 		$(fieldset).append(hiddenOptionsNumber);
 		$(fieldset).append(hiddenOptionsType);
-
-		//	Create a "div" with 2 options
-			var div = document.createElement("div");
-			div.setAttribute("class", "options" );
-			for (var i = 1 ; i <= 2 ; i++) {
-				switch ($(this).attr("id")) {
-					case "addQuestion": {
-						$(div).append( patternOptionRadioFunction(i, questionsCounter, "radio") );
-					} break;
-					case "addQuestionCB": {
-						$(div).append( patternOptionRadioFunction(i, questionsCounter, "checkbox") );
-					}
-				}
-			}
-			$(fieldset).append(div);
 
 		//	Create a Add, Delete
 			var buttonAdd = document.createElement("button");
@@ -194,12 +196,14 @@ $(document).ready(function(){
 					buttonAdd.setAttribute("class", "addSubOption buttonOption buttonColorAdd" );
 					var buttonAddContent = document.createTextNode("+");
 					$(buttonAdd).append(buttonAddContent);
+					var typeLVL = "option";
 			} else {
 				//	Delete button
 					var buttonDelete = document.createElement("button");
 					buttonDelete.setAttribute("class", "delSubOption buttonOption buttonColorDel" );
 					var buttonDeleteContent = document.createTextNode("X");
 					$(buttonDelete).append(buttonDeleteContent);
+					var typeLVL = "subOption";
 			}
 
 		//	Input (radio or checkbox (+15))
@@ -213,7 +217,11 @@ $(document).ready(function(){
 			var label = document.createElement("label");
 			label.setAttribute("class", "showName" );
 			label.setAttribute("for", ("opt"+currentQuestion+"-"+number) );
-			var labelContent = document.createTextNode(("New option"));
+			if ( typeLVL == "option" ) {
+				var labelContent = document.createTextNode(("New option"));
+			} else {
+				var labelContent = document.createTextNode(("New sub option"));
+			}
 			$(label).append(labelContent);
 
 			var hiddenName = document.createElement("input");
@@ -393,8 +401,6 @@ $(document).ready(function(){
 
 			document.body.removeChild(element);
 		}
-
-	///////////////////////////////// Checkbox code //////////////////////////////////////////////
 
 
 });

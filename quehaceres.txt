@@ -1,9 +1,10 @@
 Que haceres de la FCT:
-- generar formulario apartir de un boton con input de texto
-- Select para elegir tipo de preguntas
-	- cambiar generación de tipo checkbox(MULTIPLE_OPTIONS)
-- que las sub opciones otros nombres...
+
 - diferentes archivos de codigo
-- boton borrar no funcioona
 
 - Drag Preguntas y opciones
+
+
+------- Hecho, revisar! -------
+- Select para elegir tipo de preguntas
+	- cambiar generación de tipo checkbox(MULTIPLE_OPTIONS)
