@@ -7,6 +7,7 @@ $(document).ready(function(){
 	var hiddenNames = null;
 	var label = null;
 	var addQuestion = null;
+	var addQuestionCB = null;
 	var delQuestion = null;
 	var swapQuestion = null;
 	var addOption = null;
@@ -30,6 +31,7 @@ $(document).ready(function(){
 			label = $("label");
 			hiddenNames = $(".hiddenName");
 			addQuestion = $("#addQuestion");
+			addQuestionCB = $("#addQuestionCB");
 			delQuestion = $(".delQuestion");
 			swapQuestion = $(".swapQuestion");
 			addOption = $(".addOption");
@@ -44,6 +46,7 @@ $(document).ready(function(){
 			label.unbind();
 			hiddenNames.unbind();
 			addQuestion.unbind();
+			addQuestionCB.unbind();
 			delQuestion.unbind();
 			swapQuestion.unbind();
 			addOption.unbind();
@@ -60,6 +63,7 @@ $(document).ready(function(){
 			hiddenNames.keypress(changeFocusFunction);
 			hiddenNames.focusout(changeNameShowTextFunction);
 			addQuestion.click(generateQuestionFunction);
+			addQuestionCB.click(generateQuestionFunction);
 			delQuestion.click(removeParentFunction);
 			swapQuestion.click(swapOptionsTypeFunction);
 			addOption.click(addOptionFunction);
@@ -126,7 +130,14 @@ $(document).ready(function(){
 			var div = document.createElement("div");
 			div.setAttribute("class", "options" );
 			for (var i = 1 ; i <= 2 ; i++) {
-				$(div).append( patternOptionRadioFunction(i, questionsCounter, "radio") );
+				switch ($(this).attr("id")) {
+					case "addQuestion": {
+						$(div).append( patternOptionRadioFunction(i, questionsCounter, "radio") );
+					} break;
+					case "addQuestionCB": {
+						$(div).append( patternOptionRadioFunction(i, questionsCounter, "checkbox") );
+					}
+				}
 			}
 			$(fieldset).append(div);
 
@@ -382,4 +393,8 @@ $(document).ready(function(){
 
 			document.body.removeChild(element);
 		}
+
+	///////////////////////////////// Checkbox code //////////////////////////////////////////////
+
+
 });
