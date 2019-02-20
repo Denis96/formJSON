@@ -20,7 +20,7 @@ fieldset{
 	border-radius: 1em;
 	border-color: DarkTurquoise;
 }
-input {
+input, .input {
 	width: auto;
 	padding: 0.5em 1em;
 }
@@ -56,12 +56,11 @@ input {
 	text-align: center;
 	margin: 2em;
 }
-.buttonRightPos {
+.rightPos {
 	border-radius: 0 1em 1em 0; 
 }
-.inputLeftPos {
+.leftPos {
 	border-radius: 1em 0 0 1em; 
-    border-color: DimGray;
 }
 .main {
 	margin: 2em;

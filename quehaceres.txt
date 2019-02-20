@@ -4,7 +4,5 @@ Que haceres de la FCT:
 
 - Drag Preguntas y opciones
 
-
-------- Hecho, revisar! -------
-- Select para elegir tipo de preguntas
-	- cambiar generación de tipo checkbox(MULTIPLE_OPTIONS)
+- cambiar generación de preguntas
+	

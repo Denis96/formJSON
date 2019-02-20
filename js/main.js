@@ -15,6 +15,7 @@ $(document).ready(function(){
 		var delSubOption = null;
 	var delOption = null;
 	var generateJSON = null;
+	var test = null;
 
 	updateEvents();
 
@@ -23,55 +24,67 @@ $(document).ready(function(){
 
 
 	function updateEvents() {
-		// Search all elements
-			showForm = $("#generateForm");
-			form = $("#form");
-			formName = $("#formName > span");
-			legend = $("legend > span");
-			label = $("label");
-			hiddenNames = $(".hiddenName");
-			addQuestion = $("#addQuestion");
-			addQuestionCB = $("#addQuestionCB");
-			delQuestion = $(".delQuestion");
-			swapQuestion = $(".swapQuestion");
-			addOption = $(".addOption");
-				addSubOption = $(".addSubOption");
-				delSubOption = $(".delSubOption");
-			delOption = $(".delOption");
-			generateJSON = $("#generateJSON");
+		updateEventsSearchElements();
 
-		//	Delete all assigned events 
-			formName.unbind();
-			legend.unbind();
-			label.unbind();
-			hiddenNames.unbind();
-			addQuestion.unbind();
-			addQuestionCB.unbind();
-			delQuestion.unbind();
-			swapQuestion.unbind();
-			addOption.unbind();
-				addSubOption.unbind();
-				delSubOption.unbind();
-			delOption.unbind();
-			generateJSON.unbind();
+		updateEventsDeleteEvents();
 
-		//	Returns assign events
-			showForm.click(showFormFunction);
-			formName.dblclick(changeNameShowInputFunction);
-			legend.dblclick(changeNameShowInputFunction);
-			label.dblclick(changeNameShowInputFunction);
-			hiddenNames.keypress(changeFocusFunction);
-			hiddenNames.focusout(changeNameShowTextFunction);
-			addQuestion.click(generateQuestionFunction);
-			addQuestionCB.click(generateQuestionFunction);
-			delQuestion.click(removeParentFunction);
-			swapQuestion.click(swapOptionsTypeFunction);
-			addOption.click(addOptionFunction);
-				addSubOption.click(addSubOptionFunction);
-				delSubOption.click(removeSubOptionFunction);
-			delOption.click(removeParentFunction);
-			generateJSON.click(prepareDownload);
+		updateEventsCreateEvents();
 	}
+			function updateEventsSearchElements() {
+				showForm = $("#generateForm");
+				form = $("#form");
+				formName = $("#formName > span");
+				legend = $("legend > span");
+				label = $("label");
+				hiddenNames = $(".hiddenName");
+				addQuestion = $("#addQuestion");
+				addQuestionCB = $("#addQuestionCB");
+				delQuestion = $(".delQuestion");
+				swapQuestion = $(".swapQuestion");
+				addOption = $(".addOption");
+					addSubOption = $(".addSubOption");
+					delSubOption = $(".delSubOption");
+				delOption = $(".delOption");
+				generateJSON = $("#generateJSON");
+				optionQuestionButton = $("#optionQuestionButton");
+			}
+
+			function updateEventsDeleteEvents() {
+				$("*").unbind();
+				/*formName.unbind();
+				legend.unbind();
+				label.unbind();
+				hiddenNames.unbind();
+				addQuestion.unbind();
+				addQuestionCB.unbind();
+				delQuestion.unbind();
+				swapQuestion.unbind();
+				addOption.unbind();
+					addSubOption.unbind();
+					delSubOption.unbind();
+				delOption.unbind();
+				generateJSON.unbind();*/
+			}
+
+			function updateEventsCreateEvents() {
+				showForm.click(showFormFunction);
+				formName.dblclick(changeNameShowInputFunction);
+				legend.dblclick(changeNameShowInputFunction);
+				label.dblclick(changeNameShowInputFunction);
+				hiddenNames.keypress(changeFocusFunction);
+				hiddenNames.focusout(changeNameShowTextFunction);
+				optionQuestionButton.click(function() {
+							generateQuestionFunction($("#optionQuestion").val());
+					});
+				addQuestionCB.click(generateQuestionFunction);
+				delQuestion.click(removeParentFunction);
+				swapQuestion.click(swapOptionsTypeFunction);
+				addOption.click(addOptionFunction);
+					addSubOption.click(addSubOptionFunction);
+					delSubOption.click(removeSubOptionFunction);
+				delOption.click(removeParentFunction);
+				generateJSON.click(prepareDownload);
+			}
 
 	function showFormFunction() {
 		var formName = $(this).parent().children("#formNameText").val();
@@ -82,7 +95,7 @@ $(document).ready(function(){
 		}
 	}
 
-	function generateQuestionFunction() {
+	function generateQuestionFunction(type) {
 		//	Create "fieldset" element with id
 			var fieldset = document.createElement("fieldset");
 			fieldset.setAttribute("id", ("question"+questionsCounter) );
@@ -102,15 +115,17 @@ $(document).ready(function(){
 			var div = document.createElement("div");
 			div.setAttribute("class", "options" );
 			for (var i = 1 ; i <= 2 ; i++) {
-				switch ($(this).attr("id")) {
-					case "addQuestion": {
+				switch (type) {
+					case "radio": 
 						$(div).append( patternOptionRadioFunction(i, questionsCounter, "radio") );
 						var questionType = "radio";
-					} break;
-					case "addQuestionCB": {
+						break;
+					case "checkbox":
 						$(div).append( patternOptionRadioFunction(i, questionsCounter, "checkbox") );
 						var questionType = "checkbox";
-					}
+						break;
+
+					
 				}
 			}
 			$(fieldset).append(div);
@@ -175,6 +190,7 @@ $(document).ready(function(){
 	}
 
 	// Returns a div with 2 options
+	///// 
 	function patternOptionRadioFunction(number, currentQuestion, optionType, level) {
 		var div = document.createElement("div");
 
