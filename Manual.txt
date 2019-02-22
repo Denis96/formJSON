@@ -1,0 +1,31 @@
+//////////////////////////////////  Llistat de funcions  //////////////////////////////////
+
+	- "updateEvents": Actualitza tots els events de la pàgina.
+		- "updateEventsSearchElements": Cerca tots els elements amb event de la pàgina segons el seu identificador.
+		- "updateEventsDeleteEvents": Elimina tots els events per poder actualitzar-los.
+		- "updateEventsCreateEvents": Torna a crear tots els events.
+
+	- "showFormFunction": Mostra el formulari i elimina el menú inicial.
+
+	- "generateQuestionFunction": Crea el contenidor de cada pregunta (fieldset).
+		- "patternOptionRadioFunction": És el patró de generació de opcions de tipus radio.
+		- "patternOptionCheckboxFunction": És el patró de generació de opcions de tipus checkbox.
+		- "patternSubOptionRadioFunction": És el patró de generació de subopcions de tipus radio.
+
+	- "addOptionFunction": Crea una opció a la pregunta actual.
+	- "addSubOptionFunction": Crea una subopció a la pregunta actual.
+	- "removeSubOptionFunction": Elimina una subopció.
+	- "removeParentFunction": Elimina el element pare.
+	- "generateHiddenInput": Retorna un input de tipus hidden.
+
+	- Funcions per cambiar els textos:
+		- "changeNameShowInputFunction": Amaga el text i mostra l'input de tipus text amagat.
+		- "changeNameShowTextFunction": Assigna el valor de l'input al text, amaga l'input i mostra el text.
+		- "changeFocusFunction": Canvia el focus quan polses l'enter.
+
+	- Funcions de la generació del JSON:
+		- "generateJSONFunction": Retorna un String amb el contingut del JSON.
+		- "prepareDownload": Prepara el contingut i el nom de l'arxiu per la descarrega.
+		- "download": Descarrega el document.
+
+//////////////////////////////////  Pas a pas per generar un nou tipus de pregunta  //////////////////////////////////

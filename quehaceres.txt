@@ -1,8 +1,4 @@
 Que haceres de la FCT:
 
-- diferentes archivos de codigo
-
 - Drag Preguntas y opciones
-
-- cambiar generación de preguntas
 	
