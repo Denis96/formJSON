@@ -447,4 +447,78 @@ $(document).ready(function(){
 
 			document.body.removeChild(element);
 		}
+
+
+	//////	Functions for download 
+		$('#uploadJson').on('click', function() {
+			if (!window.FileReader) {
+				alert('Your browser is not supported');
+				return false;
+			}
+			var input = fileInput.get(0);
+			var reader = new FileReader();
+			if (input.files.length) {
+				var textFile = input.files[0];
+				reader.readAsText(textFile);
+				$(reader).on('load', processFile);
+			} else {
+				alert('Please upload a file before continuing')
+			} 
+		});
+
+		function processFile(e) {
+			var file = e.target.result,
+				results;
+			var jsonLoaded = JSON.parse(file);
+				console.log(jsonLoaded.name);
+				console.log(jsonLoaded.rows[0].questions[1].question);
+		}
 });
+
+/*
+
+CTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    var fileInput = $('#files');
+    var uploadButton = $('#upload');
+
+    uploadButton.on('click', function() {
+        if (!window.FileReader) {
+            alert('Your browser is not supported');
+            return false;
+        }
+        var input = fileInput.get(0);
+        var reader = new FileReader();
+        if (input.files.length) {
+            var textFile = input.files[0];
+            reader.readAsText(textFile);
+            $(reader).on('load', processFile);
+        } else {
+            alert('Please upload a file before continuing')
+        } 
+    });
+
+    function processFile(e) {
+        var file = e.target.result,
+            results;
+        var obj = JSON.parse(file);
+            console.log(obj.name);
+            console.log(obj.rows[0].questions[1].question);
+    }
+});
+</script>
+</head>
+<body>
+
+
+  <input id="files" type="file" name="pic" accept=".json">
+  <button type="button" id="upload">Enviar</button>
+
+
+</body>
+</html>
