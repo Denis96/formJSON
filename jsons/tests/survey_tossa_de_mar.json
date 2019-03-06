@@ -1,0 +1,76 @@
+﻿{
+  "name": "  Enquesta de satisfacció de Tossa de Mar",
+  "rows":
+  [
+    {
+      "idTablet": "TABLET8",
+      "version": "1.1",
+      "questions":
+      [
+        {
+          "question": " ",
+          "type":"HOME",
+          "options":
+          ["surveys_done"]
+        },
+
+        {
+          "question": "1 .- D'on vens?",
+          "type":"OPTIONS",
+          "options":
+          [
+            "Catalunya::Barcelona,Tarragona,Lleida,Girona",
+            "Espanya::Andalusia,Principat d'Astúries,Navarra,País Valencià",
+            "França::Auvergne-Rhône-Alpes,Bourgogne-Franche-Compté,Centre-Val de Loire,Occitanie"
+          ]
+        },
+
+        {
+          "question": "1.5 .- D'on vens?",
+          "type":"OPTIONS",
+          "options":
+          [
+            "Alemanya",
+            "Bèlgica",
+            "Escandinàvia",
+            "Holanda",
+            "Resta d'Europa"
+          ]
+        },
+        {
+          "question": "2 .- Què volien?",
+          "type":"MULTIPLE_OPTIONS",
+          "options":
+          [
+            "Visitar Monuments",
+            "Platges",
+            "Senderisme",
+            "Ciclisme",
+            "Comerç",
+            "Hotels"
+          ]
+        },
+        {
+          "question": "3 .- Amb qui ha vingut?",
+          "type":"MULTIPLE_OPTIONS",
+          "options":
+          [
+            "Sol",
+            "Parella",
+            "Família",
+            "Grup"
+
+          ]
+        },
+
+        {
+          "question": "Tot Correcte?",
+          "type":"FINAL_LOG"
+
+        }
+
+
+      ]
+    }
+  ]
+}

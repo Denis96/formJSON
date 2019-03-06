@@ -84,7 +84,7 @@ $(document).ready(function(){
 
 
 //////////////////////////////////  GENERATE QUESTION  //////////////////////////////////
-	function generateQuestionFunction(type) {
+	function generateQuestionFunction(type, loadedContentLegend, loadedContentOptions) {
 		//	Create "fieldset" element with id
 			var fieldset = document.createElement("fieldset");
 			fieldset.setAttribute("id", ("question"+questionsCounter) );
@@ -93,30 +93,74 @@ $(document).ready(function(){
 			var legendSpan = document.createElement("span");
 			legendSpan.setAttribute("class", "showName legendSpan" );
 
-			var legendContent = document.createTextNode("Question "+questionsCounter);
+
+			var legendContent = document.createTextNode(	/////////////////////
+				loadedContentLegend==null ? "Question "+questionsCounter : loadedContentLegend
+				);
+
+			 
 
 			var hiddenName = document.createElement("input");
 			hiddenName.setAttribute("type", "text" );
 			hiddenName.setAttribute("hidden", "true" );
 			hiddenName.setAttribute("class", "hiddenName" );
 
-			//	Create a "div" with 2 options
-			var div = document.createElement("div");
-			div.setAttribute("class", "options" );
-			for (var i = 1 ; i <= 2 ; i++) {
-				switch (type) {
-					case "radio": 
-						$(div).append( patternOptionRadioFunction(i, questionsCounter) );
-						var questionType = "radio";
-						break;
-					case "checkbox":
-						$(div).append( patternOptionCheckboxFunction(i, questionsCounter) );
-						var questionType = "checkbox";
-						break;
-					default:
-						alert("Error: Type option undefined - " + type);
+			// Create "div" options
+				var div = document.createElement("div");
+				div.setAttribute("class", "options" );
+
+				if (loadedContentOptions==null) {
+					//	Create 2 options
+					for (var i = 1 ; i <= 2 ; i++) {
+						switch (type) {
+							case "radio": 
+								$(div).append( patternOptionRadioFunction(i, questionsCounter) );
+								var questionType = "radio";
+								break;
+							case "checkbox":
+								$(div).append( patternOptionCheckboxFunction(i, questionsCounter) );
+								var questionType = "checkbox";
+								break;
+							default:
+								alert("Error: Type option undefined - " + type);
+						}
+					}
+				} else {
+					for (var i = 0 ; i < loadedContentOptions.length ; i++) {
+						switch (type) {
+							case "OPTIONS":
+								var levels = loadedContentOptions[i].split("::");
+								if (levels.length==1) {
+									$(div).append( patternOptionRadioFunction(i+1, questionsCounter, loadedContentOptions[i]) );
+								} else {
+									var optionLoaded = patternOptionRadioFunction(i+1, questionsCounter, levels[0]);
+
+									var subLevel = levels[1].split(",");
+
+									var divSubOptions = document.createElement("div");
+										divSubOptions.setAttribute("class", "subOption" );
+
+									$(divSubOptions).append( generateHiddenInput("optionId", 1) );
+									$(divSubOptions).append( generateHiddenInput("optionsNumber", 1) );
+
+									for (var j = 0; j < subLevel.length; j++) {
+										$(divSubOptions).append( patternSubOptionRadioFunction(questionsCounter, j+1, j, subLevel[j]) );
+									}
+
+										$(optionLoaded).append(divSubOptions);
+									$(div).append(optionLoaded);
+								}
+								var questionType = "radio";
+								break;
+							case "MULTIPLE_OPTIONS":
+								$(div).append( patternOptionCheckboxFunction(i+1, questionsCounter, loadedContentOptions[i]) );
+								var questionType = "checkbox";
+								break;
+							default:
+								alert("Error: Type option undefined - " + type);
+						}
+					}
 				}
-			}
 		
 			$(legendSpan).append(legendContent);
 			$(legend).append(legendSpan);
@@ -154,7 +198,7 @@ $(document).ready(function(){
 
 
 //////////////////////////////////  PATTERNS OPTIONS TYPES  //////////////////////////////////
-	function patternOptionRadioFunction(number, currentQuestion) {
+	function patternOptionRadioFunction(number, currentQuestion, loadedContentOptionName, loadedContentsubLevel) {
 		var div = document.createElement("div");
 
 		//	Delete button
@@ -180,7 +224,9 @@ $(document).ready(function(){
 			var label = document.createElement("label");
 			label.setAttribute("class", "showName" );
 			label.setAttribute("for", ("opt"+currentQuestion+"-"+number) );
-			var labelContent = document.createTextNode(("New option"));
+			var labelContent = document.createTextNode(
+				loadedContentOptionName==null ? "New option" : loadedContentOptionName
+				);
 			$(label).append(labelContent);
 
 		// Hidden to change name
@@ -199,7 +245,7 @@ $(document).ready(function(){
 	}
 
 
-	function patternOptionCheckboxFunction(number, currentQuestion) {
+	function patternOptionCheckboxFunction(number, currentQuestion, loadedContentOptionName) {
 		var div = document.createElement("div");
 
 		//	Delete button
@@ -207,12 +253,6 @@ $(document).ready(function(){
 			buttonDelete.setAttribute("class", "delOption buttonOption buttonColorDel" );
 			var buttonDeleteContent = document.createTextNode("X");
 			$(buttonDelete).append(buttonDeleteContent);
-
-		//	Add button
-			var buttonAdd = document.createElement("button");
-			buttonAdd.setAttribute("class", "addSubOption buttonOption buttonColorAdd" );
-			var buttonAddContent = document.createTextNode("+");
-			$(buttonAdd).append(buttonAddContent);
 
 		//	Input (checkbox)
 			var input = document.createElement("input");
@@ -225,7 +265,9 @@ $(document).ready(function(){
 			var label = document.createElement("label");
 			label.setAttribute("class", "showName" );
 			label.setAttribute("for", ("opt"+currentQuestion+"-"+number) );
-			var labelContent = document.createTextNode(("New option"));
+			var labelContent = document.createTextNode(
+				loadedContentOptionName==null ? "New option" : loadedContentOptionName
+				);
 			$(label).append(labelContent);
 
 		// Hidden to change name
@@ -235,7 +277,6 @@ $(document).ready(function(){
 			hiddenName.setAttribute("class", "hiddenName" );
 
 		$(div).append(buttonDelete);
-		$(div).append(buttonAdd);
 		$(div).append(input);
 		$(div).append(label);
 		$(div).append(hiddenName);
@@ -244,7 +285,7 @@ $(document).ready(function(){
 	}
 
 
-	function patternSubOptionRadioFunction(currentQuestion, optionNumber, subOptionId) {
+	function patternSubOptionRadioFunction(currentQuestion, optionNumber, subOptionId, loadedContentSubOptionName) {
 		var div = document.createElement("div");
 
 		//	Delete button
@@ -263,8 +304,10 @@ $(document).ready(function(){
 		//	Label to input
 			var label = document.createElement("label");
 			label.setAttribute("class", "showName" );
-			label.setAttribute("for", ("opt"+currentQuestion+"-"+optionNumber) );
-			var labelContent = document.createTextNode(("New sub option"));
+			label.setAttribute("for", ("opt"+currentQuestion+"-"+optionNumber+"-"+subOptionId) );
+			var labelContent = document.createTextNode(
+				loadedContentSubOptionName==null ? "New sub option" : loadedContentSubOptionName
+				);
 			$(label).append(labelContent);
 
 		// Hidden to change name
@@ -375,13 +418,14 @@ $(document).ready(function(){
 	////////////	JSON Funtion 
 		function generateJSONFunction() {
 			var content = "{";
-				content += "\"name\": \""+ $(form).children("#formName").children(".showName").text() +"\",";
+				content += "\"name\": \""+ $("#formName").children(".showName").text() +"\",";
 				content += "\"rows\": [ {";
 					content += "\"idTablet\": \"TABLET8\",";
 					content += "\"version\": \"1.1\",";
 					content += "\"questions\": [ {";
 						content += "\"question\": \" \",";
-						content += "\"type\": \"HOME\"}";
+						content += "\"type\": \"HOME\",";
+						content += "\"options\": [\"surveys_done\"]}";
 
 						//	opcions from the form
 						$(form).children("fieldset").each(function( index ) {
@@ -419,7 +463,7 @@ $(document).ready(function(){
 
 						//	final log
 						content += ", {";
-						content += "\"questions\": \"Tot Correcte?\",";
+						content += "\"question\": \"Tot Correcte?\",";
 						content += "\"type\": \"FINAL_LOG\"";
 						content += "} ]";
 					content += "} ]";
@@ -449,13 +493,13 @@ $(document).ready(function(){
 		}
 
 
-	//////	Functions for download 
+	//////	Functions for upload 
 		$('#uploadJson').on('click', function() {
 			if (!window.FileReader) {
 				alert('Your browser is not supported');
 				return false;
 			}
-			var input = fileInput.get(0);
+			var input = $("#formJsonFile").get(0);
 			var reader = new FileReader();
 			if (input.files.length) {
 				var textFile = input.files[0];
@@ -470,55 +514,17 @@ $(document).ready(function(){
 			var file = e.target.result,
 				results;
 			var jsonLoaded = JSON.parse(file);
-				console.log(jsonLoaded.name);
-				console.log(jsonLoaded.rows[0].questions[1].question);
+
+			$("#formName > .showName").text(jsonLoaded.name);
+			$(".container > .generateFormDiv").remove();
+			$("#formContainer").removeAttr("hidden");
+
+			for (var i = 1; i < jsonLoaded.rows[0].questions.length-1; i++) {
+				generateQuestionFunction(
+						jsonLoaded.rows[0].questions[i].type,
+						jsonLoaded.rows[0].questions[i].question,
+						jsonLoaded.rows[0].questions[i].options
+					);
+			}
 		}
 });
-
-/*
-
-CTYPE HTML>
-<html>
-<head>
-    <meta charset="UTF-8">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-$(document).ready(function(){
-    var fileInput = $('#files');
-    var uploadButton = $('#upload');
-
-    uploadButton.on('click', function() {
-        if (!window.FileReader) {
-            alert('Your browser is not supported');
-            return false;
-        }
-        var input = fileInput.get(0);
-        var reader = new FileReader();
-        if (input.files.length) {
-            var textFile = input.files[0];
-            reader.readAsText(textFile);
-            $(reader).on('load', processFile);
-        } else {
-            alert('Please upload a file before continuing')
-        } 
-    });
-
-    function processFile(e) {
-        var file = e.target.result,
-            results;
-        var obj = JSON.parse(file);
-            console.log(obj.name);
-            console.log(obj.rows[0].questions[1].question);
-    }
-});
-</script>
-</head>
-<body>
-
-
-  <input id="files" type="file" name="pic" accept=".json">
-  <button type="button" id="upload">Enviar</button>
-
-
-</body>
-</html>

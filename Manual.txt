@@ -28,4 +28,7 @@
 		- "prepareDownload": Prepara el contingut i el nom de l'arxiu per la descarrega.
 		- "download": Descarrega el document.
 
+
+
+
 //////////////////////////////////  Pas a pas per generar un nou tipus de pregunta  //////////////////////////////////

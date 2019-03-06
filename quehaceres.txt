@@ -1,6 +1,6 @@
 Que haceres de la FCT:
 
 - Drag Preguntas y opciones
-- Upload Json:
-	- implementar codigo de test en el main
-	- generacion de div
+
+- Tipo de pregunta:
+	- Pregunta doble
