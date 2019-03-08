@@ -1,5 +1,6 @@
 Que haceres de la FCT:
 
+- que por defecto el nombre del archivo se el nombre del form
 - Drag Preguntas y opciones
 
 - Tipo de pregunta:
