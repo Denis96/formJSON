@@ -1,0 +1,53 @@
+{  
+   "name":"Test Form Json v1.0",
+   "rows":[  
+      {  
+         "idTablet":"TABLET8",
+         "version":"1.1",
+         "questions":[  
+            {  
+               "question":" ",
+               "type":"HOME",
+               "options":[  
+                  "surveys_done"
+               ]
+            },
+            {  
+               "question":"1.- Que color te gusta?",
+               "type":"OPTIONS",
+               "options":[  
+                  "Rojo",
+                  "Azul",
+                  "Amarillo",
+                  "Rosa"
+               ]
+            },
+            {  
+               "question":"2.- Que ingradientes utilizarias en una pizza?",
+               "type":"MULTIPLE_OPTIONS",
+               "options":[  
+                  "Salchichas",
+                  "Jamón",
+                  "Piña",
+                  "Atún",
+                  "Bacon"
+               ]
+            },
+            {  
+               "question":"3.- De donde eres?",
+               "type":"OPTIONS",
+               "options":[  
+                  "España::Catalunya,Madrid,Galicia",
+                  "Portugal::Lisboa",
+                  "Francia::Paris,Campanig",
+                  "Andorra::Andorra,Paraiso fiscal"
+               ]
+            },
+            {  
+               "question":"Tot Correcte?",
+               "type":"FINAL_LOG"
+            }
+         ]
+      }
+   ]
+}
